@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>조리실습 모둠 도우미</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Apple SD Gothic Neo",
+                   "Malgun Gothic", "Noto Sans KR", sans-serif;
+      background: #fff8ef;
+      color: #3b2f2a;
+      min-height: 100vh;
+      min-height: 100dvh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+    }
+
+    .card {
+      width: 100%;
+      max-width: 420px;
+      background: #ffffff;
+      border-radius: 24px;
+      padding: 48px 28px 36px;
+      text-align: center;
+      box-shadow: 0 8px 24px rgba(180, 110, 60, 0.12);
+    }
+
+    .icon {
+      font-size: 64px;
+      line-height: 1;
+      margin-bottom: 20px;
+    }
+
+    h1 {
+      font-size: clamp(1.6rem, 6vw, 2rem);
+      font-weight: 800;
+      color: #e0672b;
+      margin-bottom: 12px;
+      word-break: keep-all;
+    }
+
+    .desc {
+      font-size: 1rem;
+      line-height: 1.6;
+      color: #6b5a50;
+      margin-bottom: 36px;
+      word-break: keep-all;
+    }
+
+    .start-btn {
+      width: 100%;
+      padding: 18px;
+      font-size: 1.2rem;
+      font-weight: 700;
+      color: #fff;
+      background: #e0672b;
+      border: none;
+      border-radius: 16px;
+      cursor: pointer;
+      transition: transform 0.1s, background 0.2s;
+      -webkit-tap-highlight-color: transparent;
+    }
+    .start-btn:hover  { background: #c9561e; }
+    .start-btn:active { transform: scale(0.97); }
+
+    /* 준비 중 알림 */
+    .toast {
+      position: fixed;
+      left: 50%;
+      bottom: 40px;
+      transform: translate(-50%, 20px);
+      background: #3b2f2a;
+      color: #fff;
+      padding: 14px 24px;
+      border-radius: 999px;
+      font-size: 1rem;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.25s, transform 0.25s;
+      white-space: nowrap;
+    }
+    .toast.show {
+      opacity: 1;
+      transform: translate(-50%, 0);
+    }
+  </style>
+</head>
+<body>
+  <main class="card">
+    <div class="icon">🍳</div>
+    <h1>조리실습 모둠 도우미</h1>
+    <p class="desc">우리 모둠의 역할 분담과 조리 순서를 한눈에 정리해요.</p>
+    <button class="start-btn" id="startBtn">시작</button>
+  </main>
+
+  <div class="toast" id="toast">준비 중입니다 🙂</div>
+
+  <script>
+    const startBtn = document.getElementById('startBtn');
+    const toast = document.getElementById('toast');
+    let timer;
+
+    startBtn.addEventListener('click', () => {
+      toast.classList.add('show');
+      clearTimeout(timer);
+      timer = setTimeout(() => toast.classList.remove('show'), 2000);
+    });
+  </script>
+</body>
+</html>
